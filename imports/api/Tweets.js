@@ -21,7 +21,6 @@ if (Meteor.isServer) {
   Meteor.methods({
     "twitter.stream"(query) {
 
-
       // Create the Twitter object
       let client = new Twitter({
         consumer_key: process.env.TWITTER_CONSUMER_KEY,

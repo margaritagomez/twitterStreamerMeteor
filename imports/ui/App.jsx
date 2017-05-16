@@ -3,6 +3,7 @@ import {PropTypes} from "prop-types";
 import { Meteor } from "meteor/meteor";
 import { createContainer} from "meteor/react-meteor-data";
 import ColombiaMap from './ColombiaMap.jsx';
+import Overlay from './Overlay.jsx';
 import TweetsResults from "./TweetsResults.jsx";
 import {Tweets} from "../api/Tweets.js";
 
@@ -19,7 +20,6 @@ export class App extends Component {
     // "this" will change in the method call, so I need to save it
     let component = this;
 
-    console.log(evt.target.value);
     Meteor.call("twitter.stream", evt.target.value);
 
   }
@@ -28,19 +28,24 @@ export class App extends Component {
     this.projection=p;
   }
 
-
   render() {
     console.log("render!");
     return (
       <div>
-        <div className="col-md-6">
+        <div>
+          <Overlay  ></Overlay>
           <ColombiaMap
-          width="600"
-          height="600"
-          data={{RISARALDA:10, CALDAS:12}}
-          setProjection = {this.setProjection.bind(this)}></ColombiaMap>
+            className="mapita"
+            width="600"
+            height="600"
+            data={{RISARALDA:0}}
+            setProjection = {this.setProjection.bind(this)}>
+          </ColombiaMap>
+
+
       </div>
-      <div className="col-md-6">
+
+      <div>
         <input type="text" onKeyPress={this.changeQuery.bind(this)} placeholder="Query"/>
         { this.props && this.props.err ?
           <div>Error: {this.props.err}</div> :
