@@ -80,10 +80,10 @@ export default class ColombiaMap extends Component {
 		    .enter().append('path')
 		      .attr('d', path)
 		      .attr('vector-effect', 'non-scaling-stroke')
-		      .style('fill', fillFn);
-		      /*.on('mouseover', mouseover)
+		      .style('fill', fillFn)
+		      .on('mouseover', mouseover)
 		      .on('mouseout', mouseout)
-		      .on('click', clicked);*/
+		      .on('click', clicked);
 		});
 
 		// Get province name
