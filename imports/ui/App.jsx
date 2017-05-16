@@ -9,7 +9,7 @@ import {Tweets} from "../api/Tweets.js";
 export class App extends Component {
   constructor(props) {
     super(props);
-
+    this.projection=null;
   }
 
   changeQuery(evt) {
@@ -24,6 +24,10 @@ export class App extends Component {
 
   }
 
+  setProjection(p){
+    this.projection=p;
+  }
+
 
   render() {
     console.log("render!");
@@ -31,9 +35,10 @@ export class App extends Component {
       <div>
         <div className="col-md-6">
           <ColombiaMap
-          width="450"
-          height="450"
-          data={{RISARALDA:10, CALDAS:12}}></ColombiaMap>
+          width="600"
+          height="600"
+          data={{RISARALDA:10, CALDAS:12}}
+          setProjection = {this.setProjection.bind(this)}></ColombiaMap>
       </div>
       <div className="col-md-6">
         <input type="text" onKeyPress={this.changeQuery.bind(this)} placeholder="Query"/>
