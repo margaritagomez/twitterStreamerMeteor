@@ -4,6 +4,18 @@
   border-style: solid;
 }
 
+.head {
+  font-family: 'Francois One', sans-serif;
+}
+
+.bod{
+  font-family: 'Quattrocento Sans', sans-serif;
+}
+
+.center{
+  text-align: center;
+}
+
 .mapita{
 
 }

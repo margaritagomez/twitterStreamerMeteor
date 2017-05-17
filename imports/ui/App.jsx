@@ -6,6 +6,7 @@ import ColombiaMap from './ColombiaMap.jsx';
 import Overlay from './Overlay.jsx';
 import TweetsResults from "./TweetsResults.jsx";
 import {Tweets} from "../api/Tweets.js";
+import {Button} from "react-bootstrap";
 
 export class App extends Component {
   constructor(props) {
@@ -24,6 +25,10 @@ export class App extends Component {
 
   }
 
+  begin(){
+    Meteor.call('twitter.stream', 'hola');
+  }
+
   setProjection(p){
     this.projection=p;
   }
@@ -32,7 +37,10 @@ export class App extends Component {
     console.log("render!");
     return (
       <div>
-        <div>holaa</div>
+        <div className="col-md-6">
+        <div>
+          <h1 className="head"> Tweets by Geolocation <small>by Margarita Gómez</small></h1>
+        </div>
         <div>
           <Overlay tweets={this.props.tweets} projection ={this.projection} ></Overlay>
           <ColombiaMap
@@ -42,16 +50,17 @@ export class App extends Component {
             data={{RISARALDA:0}}
             setProjection = {this.setProjection.bind(this)}>
           </ColombiaMap>
-          
-        </div>
 
+        </div>
+      </div>
       <div>
-        <input type="text" onKeyPress={this.changeQuery.bind(this)} placeholder="Query"/>
+        <br/>
+        <Button className="center" onClick={this.begin.bind(this)}> Begin Twitter Streaming </Button>
         { this.props && this.props.err ?
           <div>Error: {this.props.err}</div> :
           <span></span>
         }
-        <h2>Results:</h2>
+        <h2 className="head">Results:</h2>
         {this.props && this.props.tweets ?
           <TweetsResults tweets={this.props.tweets}/> :
           <p>Enter a query</p>
