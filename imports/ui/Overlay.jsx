@@ -16,19 +16,19 @@ export default class Overlay extends Component {
   }
 
   updateCanvas(){
-    let esta = false;
     let emp = 0;
     if(this.state.tuits.length>=11){
       emp = this.state.tuits.length-11;
     }
     for(let i =0;i<this.props.tweets.length;i++){
-
+        let esta = false;
         for (let j=emp;j<this.state.tuits.length && !esta && this.state.tuits.length !== 0;j++){
           if (this.props.tweets[i].id === this.state.tuits[j].id){
             esta = true;
             console.log("si estaaaa");
           }
         }
+        console.log(this.props.tweets[i]);
         if (!esta){
           this.state.tuits = this.state.tuits.concat(this.props.tweets[i]);
           const ctx = this.refs.canvas.getContext('2d');
@@ -48,6 +48,7 @@ export default class Overlay extends Component {
           ctx.arc(xycoord[0],xycoord[1],1,0,2*Math.PI);
           ctx.stroke();
           console.log('pintaa');
+
         }
     }
   }
