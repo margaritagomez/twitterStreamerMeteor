@@ -53,9 +53,10 @@ export class App extends Component {
 
         </div>
       </div>
-      <div>
+      <div className="col-md-6">
         <br/>
-        <Button className="center" onClick={this.begin.bind(this)}> Begin Twitter Streaming </Button>
+        <Button className="center bod" onClick={this.begin.bind(this)}> Begin Twitter Streaming </Button>
+        <p className="bod"> Click and wait for a bit. It may take a while for tweets to show.</p>
         { this.props && this.props.err ?
           <div>Error: {this.props.err}</div> :
           <span></span>

@@ -23,9 +23,10 @@ export default class Overlay extends Component {
     }
     for(let i =0;i<this.props.tweets.length;i++){
 
-        for (let j=emp;j<this.state.tuits.length && !esta && this.state.tuits.length === 0;j++){
+        for (let j=emp;j<this.state.tuits.length && !esta && this.state.tuits.length !== 0;j++){
           if (this.props.tweets[i].id === this.state.tuits[j].id){
             esta = true;
+            console.log("si estaaaa");
           }
         }
         if (!esta){
@@ -37,14 +38,18 @@ export default class Overlay extends Component {
           let xycoord = this.props.projection(coordinates);
           ctx.beginPath();
           ctx.arc(xycoord[0],xycoord[1],0.001*followers,0,2*Math.PI);
+          ctx.fillStyle = '#'+this.props.tweets[i].user.profile_background_color;
+          ctx.globalAlpha = 0.2;
+          ctx.fill();
+          ctx.lineWidth = 1;
+          ctx.strokeStyle = '#003300';
           ctx.stroke();
+          ctx.beginPath();
           ctx.arc(xycoord[0],xycoord[1],1,0,2*Math.PI);
-          // ctx.fill();
           ctx.stroke();
+          console.log('pintaa');
         }
     }
-
-
   }
 
   render(){
@@ -52,6 +57,7 @@ export default class Overlay extends Component {
       <div style={{position:"absolute", "pointer-events":"none"}} >
         <canvas className="canvas" ref='canvas' width="600" height="600"></canvas>
       </div>
+
     );
   }
 }
